@@ -1,0 +1,26 @@
+body {
+  line-height: 1.6;
+  font-family: Inter, sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.accounts {
+  max-width: 1024px;
+  margin: 30px auto;
+  padding: 10px 15px;
+}
+
+.accounts__header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.accounts__form {
+  margin-top: 30px;
+  border: 1px solid var(--el-border-color);
+  border-radius: 10px;
+}
