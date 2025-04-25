@@ -19,6 +19,7 @@ export default defineConfig({
       resolvers: [ElementPlusResolver()],
     }),
   ],
+  base: '/saas-vue-test/',
   server: { port: 8080 },
   resolve: {
     alias: {
