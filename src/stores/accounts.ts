@@ -1,12 +1,13 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { Account, LSAccount } from '@/types/account';
+import { getLSAccData, setLSAccounts } from '@/utils/ls';
 
 export const useAccountsStore = defineStore('accounts', () => {
   const accounts = ref<Account[]>([]);
 
   function getAccounts() {
-    const LSAccData = localStorage.getItem('accData');
+    const LSAccData = getLSAccData();
     if (LSAccData !== null) {
       const { accData } = JSON.parse(LSAccData);
 
@@ -20,16 +21,9 @@ export const useAccountsStore = defineStore('accounts', () => {
           labels,
         });
       });
-
-      return accounts;
-    } else {
-      localStorage.setItem(
-        'accData',
-        JSON.stringify({
-          accData: [],
-        }),
-      );
     }
+
+    return accounts;
   }
 
   function addAccount() {
@@ -73,12 +67,7 @@ export const useAccountsStore = defineStore('accounts', () => {
       };
     });
 
-    localStorage.setItem(
-      'accData',
-      JSON.stringify({
-        accData: LSAcc,
-      }),
-    );
+    setLSAccounts(LSAcc);
   }
 
   function deleteAccount(index: number) {
