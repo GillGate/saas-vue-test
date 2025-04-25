@@ -1,39 +1,24 @@
-# sa
+# Тестовое задание для компании SaaSoft
 
-This template should help get you started developing with Vue 3 in Vite.
+## Стек
 
-## Recommended IDE Setup
+1. Vue.js 3 + Composition API (фреймворк)
+2. TypeScript (язык)
+3. Pinia (стейт менеджер)
+4. Element Plus (UI-фреймворк)
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Type Support for `.vue` Imports in TS
-
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+## Быстрый старт
 
 ```sh
-npm install
-```
+# Клонировать репозиторий
+git clone <repository-url>
 
-### Compile and Hot-Reload for Development
+# Перейти в директорию проекта
+cd saas-vue-test
 
-```sh
+# Установить все зависимости
+npm i
+
+# Запустить приложение
 npm run dev
-```
-
-### Type-Check, Compile and Minify for Production
-
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
