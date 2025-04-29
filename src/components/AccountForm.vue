@@ -52,7 +52,7 @@ const arraySpanMethod = ({ row, columnIndex }) => {
 
 <template>
   <el-table :data="accounts" :span-method="arraySpanMethod" empty-text="Нет записей">
-    <el-table-column prop="labels" label="Метки">
+    <el-table-column prop="labels" label="Метки" min-width="160">
       <template #default="scope">
         <el-input
           v-model="scope.row.labels"
@@ -62,7 +62,7 @@ const arraySpanMethod = ({ row, columnIndex }) => {
         />
       </template>
     </el-table-column>
-    <el-table-column prop="type" label="Тип записи">
+    <el-table-column prop="type" label="Тип записи" min-width="160">
       <template #default="scope">
         <el-select v-model="scope.row.type" @change="handleType(scope.row)">
           <el-option
@@ -74,7 +74,7 @@ const arraySpanMethod = ({ row, columnIndex }) => {
         </el-select>
       </template>
     </el-table-column>
-    <el-table-column prop="login" label="Логин">
+    <el-table-column prop="login" label="Логин" min-width="160">
       <template #default="scope">
         <el-input
           :class="{ 'el-input--error': scope.row.login.length === 0 }"
@@ -85,7 +85,7 @@ const arraySpanMethod = ({ row, columnIndex }) => {
         />
       </template>
     </el-table-column>
-    <el-table-column prop="password" label="Пароль">
+    <el-table-column prop="password" label="Пароль" min-width="160">
       <template #default="scope">
         <el-input
           v-if="scope.row.password !== null"
@@ -99,7 +99,7 @@ const arraySpanMethod = ({ row, columnIndex }) => {
         />
       </template>
     </el-table-column>
-    <el-table-column fixed="right" min-width="20">
+    <el-table-column fixed="right" min-width="30">
       <template #default="scope">
         <el-button link :icon="Delete" @click="$emit('delete', scope.$index)"></el-button>
       </template>

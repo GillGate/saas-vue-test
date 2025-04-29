@@ -1,7 +1,7 @@
 import { ref } from 'vue';
 import { defineStore } from 'pinia';
 import type { Account, LSAccount } from '@/types/account';
-import { getLSAccData, setLSAccounts } from '@/utils/ls';
+import { convertToLSAccount, getLSAccData, setLSAccounts } from '@/utils/ls';
 
 export const useAccountsStore = defineStore('accounts', () => {
   const accounts = ref<Account[]>([]);
@@ -36,38 +36,18 @@ export const useAccountsStore = defineStore('accounts', () => {
   }
 
   function saveAccounts(accounts) {
-    const validatedAccs: Account[] = [];
+    const validatedAccs: LSAccount[] = [];
 
-    accounts.forEach((acc) => {
-      if (acc.type === 'ldap' && acc.login.length > 0) {
-        validatedAccs.push(acc);
-      }
-      if (acc.type === 'local' && acc.login.length > 0 && acc.password.length > 0) {
-        validatedAccs.push(acc);
+    accounts.forEach((acc: Account) => {
+      if (
+        (acc.type === 'ldap' && acc.login.length > 0) ||
+        (acc.type === 'local' && acc.login.length > 0 && acc.password.length > 0)
+      ) {
+        validatedAccs.push(convertToLSAccount(acc));
       }
     });
 
-    const LSAcc = validatedAccs.map((acc) => {
-      const labels = new Set<string>();
-
-      acc.labels.split(';').forEach((label: string) => {
-        const formatLabel = label.trim();
-        if (formatLabel !== '') {
-          labels.add(formatLabel);
-        }
-      });
-
-      return {
-        ...acc,
-        labels: Array.from(labels).map((label) => {
-          return {
-            text: label,
-          };
-        }),
-      };
-    });
-
-    setLSAccounts(LSAcc);
+    setLSAccounts(validatedAccs);
   }
 
   function deleteAccount(index: number) {

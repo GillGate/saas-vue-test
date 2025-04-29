@@ -19,6 +19,6 @@ interface Label {
   text: string;
 }
 
-export type LSAccount = Account & {
+export type LSAccount = Omit<Account, 'labels'> & {
   labels: Label[];
 };
